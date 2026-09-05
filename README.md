@@ -1,6 +1,6 @@
 # unifind-backend
 
-Express (v5, ESM) API server.
+Express (v5, ESM) API server written in TypeScript.
 
 ## Setup
 
@@ -13,15 +13,16 @@ cp .env.example .env
 
 ```bash
 npm run dev    # watch mode
-npm start      # production
+npm run build  # compile TypeScript to dist/
+npm start      # run the compiled production server
 ```
 
 ## Structure
 
 ```
 src/
-├── app.js                 # express app: middleware + route mounting
-├── server.js              # http listener + graceful shutdown
+├── app.ts                 # express app: middleware + route mounting
+├── server.ts              # http listener + graceful shutdown
 ├── config/                # env-backed config
 ├── routes/                # url -> controller mapping
 ├── controllers/           # request/response handling
@@ -34,14 +35,14 @@ src/
 
 | Method | Path          | Description  |
 | ------ | ------------- | ------------ |
-| GET    | `/api/health` | Health check |
+| GET    | `/api/v1/health` | Health check |
 
 ## Adding a resource
 
-1. `src/services/foo.service.js` — logic
-2. `src/controllers/foo.controller.js` — wrap handlers in `asyncHandler`, throw `ApiError` for failures
-3. `src/routes/foo.routes.js` — define the router
-4. Mount it in `src/routes/index.js`
+1. `src/services/foo.service.ts` — logic
+2. `src/controllers/foo.controller.ts` — wrap handlers in `asyncHandler`, throw `ApiError` for failures
+3. `src/routes/foo.routes.ts` — define the router
+4. Mount it in `src/routes/index.ts`
 
 ## Response shape
 

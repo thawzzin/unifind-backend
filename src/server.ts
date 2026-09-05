@@ -5,7 +5,7 @@ const server = app.listen(config.port, () => {
   console.log(`Server listening on http://localhost:${config.port} [${config.env}]`);
 });
 
-function shutdown(signal) {
+function shutdown(signal: NodeJS.Signals): void {
   console.log(`${signal} received, shutting down...`);
   server.close(() => process.exit(0));
 }
